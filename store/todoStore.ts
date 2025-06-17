@@ -1,7 +1,6 @@
-import { configureStore, UnknownAction } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import todoReducer from "@/features/todo/todoSlice";
 
 export const todoStore = configureStore({
-  reducer: function (state: unknown, action: UnknownAction) {
-    throw new Error("Function not implemented.");
-  },
+  reducer: todoReducer,
 });
