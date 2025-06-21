@@ -6,7 +6,7 @@ import { Todo, TodoState } from "@/types/TodosType";
 import { MdDelete, MdEdit } from "react-icons/md";
 
 const Todos = () => {
-  const todos = useSelector((state: TodoState) => state.todos);
+  const todos = useSelector((state: TodoState) => state.todos); // Get list of todos from Redux store
   const dispatch = useDispatch();
 
   return (

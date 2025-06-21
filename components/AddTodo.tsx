@@ -12,30 +12,30 @@ const AddTodo: FC = () => {
   const [input, setInput] = useState<string>("");
   const dispatch = useDispatch();
 
-  const editingTodo = useSelector((state: TodoState) => state.editingTodo);
+  const editingTodo = useSelector((state: TodoState) => state.editingTodo); // Get the todo that is being edited, if any
 
   useEffect(() => {
     if (editingTodo) {
-      setInput(editingTodo.text);
+      setInput(editingTodo.text); // Populate input when we click 'Edit'
     }
   }, [editingTodo]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!input.trim()) return;
+    if (!input.trim()) return; // Prevent empty or whitespace-only todos
 
     if (editingTodo) {
-      dispatch(updateTodo({ id: editingTodo.id, newText: input }));
-      dispatch(clearEditingTodo());
+      dispatch(updateTodo({ id: editingTodo.id, newText: input })); // Update existing todo
+      dispatch(clearEditingTodo()); // Exit edit mode
     } else {
-      dispatch(addTodo({ text: input }));
+      dispatch(addTodo({ text: input })); // Add new todo
     }
-    setInput("");
+    setInput(""); // Reset input field
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
+    setInput(e.target.value); // Update input state as user types
   };
 
   return (
