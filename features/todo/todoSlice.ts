@@ -3,6 +3,7 @@ import { Todo, TodoState } from "@/types/TodosType";
 
 const initialState: TodoState = {
   todos: [{ id: "1", text: "Hello World" }],
+  editingTodo: null,
 };
 
 export const todoSlice = createSlice({
@@ -28,8 +29,20 @@ export const todoSlice = createSlice({
         todo.text = action.payload.newText;
       }
     },
+    setEditingTodo: (state, action: PayloadAction<Todo>) => {
+      state.editingTodo = action.payload;
+    },
+    clearEditingTodo: (state) => {
+      state.editingTodo = null;
+    },
   },
 });
 
-export const { addTodo, removeTodo, updateTodo } = todoSlice.actions;
+export const {
+  addTodo,
+  removeTodo,
+  updateTodo,
+  setEditingTodo,
+  clearEditingTodo,
+} = todoSlice.actions;
 export default todoSlice.reducer;
